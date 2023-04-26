@@ -42,8 +42,8 @@ typedef struct l_lists
 
 typedef struct builtwith
 {
-	char *value;
-	int (*v)(shell_info *infosh);
+	char *name;
+	int (*v)(data_shell *infosh);
 } builtwith_r;
 
 /**
@@ -94,22 +94,23 @@ void get_sigint(int prompt);
 
 
 /* makeshell_2.c */
-
-
+void free_data(data_shell *infosh);
+void set_data(data_shell *infosh, char **av);
+int main(int ac, char **av);
 
 /* execute_cmd_3.c */
 int dir_in(char *way, int *m);
 char *_thatwhich(char *command, char **_surr);
-int is_execute(shell_info *infosh);
-int err_checker(char *rid, shell_info *infosh);
-int comma_exec(shell_info *infosh);
+int is_execute(data_shell *infosh);
+int err_checker(char *rid, data_shell *infosh);
+int comma_exec(data_shell *infosh);
 
 /* close_exit.c */
-int close_exit_shell(shell_info *infosh);
+int close_exit_shell(data_shell *infosh);
 
 /* surr.c */
-int comp_surr_name(const char *nsurr, const char *name)
-int _suurr(shell_info *infosh)
-char *_getenvar(const char *name, char **_surr)
+int comp_surr_name(const char *nsurr, const char *name);
+int _suurr(data_shell *infosh);
+char *_getenvar(const char *name, char **_surr);
 
 #endif

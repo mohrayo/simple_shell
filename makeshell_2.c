@@ -1,12 +1,12 @@
-#include "simple_shell.c"
+#include "simple_shell.h"
 
 /**
- * empty_data - this function frees up a data structure
+ * free_data - this function frees up a data structure
  * @infosh: this is the data structure
  * Return: null
  */
 
-void empty_data(shell_info *infosh)
+void free_data(data_shell *infosh)
 {
 	unsigned int fil;
 
@@ -20,12 +20,12 @@ void empty_data(shell_info *infosh)
 }
 
 /**
- * assign_data - initialize data structure
+ * set_data - initialize data structure
  * @infosh: this is the data structure
  * @av: argument vector
  */
 
-void assign_data(shell_info *infosh, char **av)
+void set_data(data_shell *infosh, char **av)
 {
 	unsigned int fil;
 
@@ -58,13 +58,13 @@ void assign_data(shell_info *infosh, char **av)
 
 int main(int ac, char **av)
 {
-	shell_info infosh;
+	data_shell infosh;
 	(void) ac;
 
-	prompt(SIGNIT, get_sigint);
-	assign_data(&infosh, av);
-	looping_shell(&infosh);
-	empty_data(&infosh);
+	signal(SIGINT, get_sigint);
+	set_data(&infosh, av);
+	shell_loop(&infosh);
+	free_data(&infosh);
 	if (infosh.status < 0)
 		return (255);
 	return (infosh.status);
