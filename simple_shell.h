@@ -104,4 +104,12 @@ int is_execute(shell_info *infosh);
 int err_checker(char *rid, shell_info *infosh);
 int comma_exec(shell_info *infosh);
 
+/* close_exit.c */
+int close_exit_shell(shell_info *infosh);
+
+/* surr.c */
+int comp_surr_name(const char *nsurr, const char *name)
+int _suurr(shell_info *infosh)
+char *_getenvar(const char *name, char **_surr)
+
 #endif

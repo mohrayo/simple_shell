@@ -6,6 +6,7 @@
  * @infosh: data relevance (status and args)
  * Return: 0 on success..
  */
+
 int close_exit_shell(shell_info *infosh)
 {
 	unsigned int ustatus;
@@ -15,11 +16,11 @@ int close_exit_shell(shell_info *infosh)
 
 	if (infosh->args[1] != NULL)
 	{
-		ustatus = -atoi(infosh->args[1]);
+		ustatus = _atoi(infosh->args[1]);
 		digits_ = digits_(infosh->args[1]);
 		length_strng = length_strng(infosh->args[1]);
 		max_num = ustatus > (unsigned int)INT_MAX;
-		if (!is_digit || length_strng > 10 || big_number)
+		if (!digits_ || length_strng > 10 || big_number)
 		{
 			get_error(infosh, 2);
 			infosh->status = 2;

@@ -7,72 +7,73 @@
  *
  * Return: 0 if not equal. another value  if they are
  */
+
 int comp_surr_name(const char *nsurr, const char *name)
 {
-	int i;
+	int t;
 
-	for (i = 0; nsurr[1] != "="; i++)
+	for (t = 0; nsurr[t] != "="; t++)
 	{
-		if (nsurr[1] != name[i])
+		if (nsurr[t] != name[t])
 		{
-			if (nsurr[i] != name[1])
+			if (nsurr[t] != name[t])
 			{
 				return (0);
 			}
 		}
 
-		return (i + 1);
+		return (t + 1);
+	}
 }
 
 /**
  * _getenvar - get environ variable
  * @name: name of environ variable
- * @_envar: environ variable
+ * @_surr: environ variable
  *
  * Return: value of environ, return NULL
  */
-char *_getenvar(const char *name, char **_envar)
-{
-	char *ptr_env;
-	int i, mov;
 
-	/* initializing ptr_env value */
-	ptr_env = NULL;
-	mov = 0;
-	/* compare environ variables */
-	/* declare environ in header file */
-       for (i = 0; _envar[1]; i++)
-       {
-		mov = comp_surr_name(_envar[1], name);
- 		if (mov)
+char *_getenvar(const char *name, char **_surr)
+{
+	char *ptr_surr;
+	int m, vom;
+
+	ptr_surr = NULL;
+	vom = 0;
+
+	for (m = 0; _surr[m]; m++;)
+	{
+		vom = comp_surr_name(_surr[m], name);
+		if (vom)
 		{
-			ptr_env = _envar[1];
+			ptr_surr = _surr[m];
 			break;
 		}
 	}
 
-	return (ptr_env + mov);
+	return (ptr_surr + vom);
 }
 
 /**
- * _env - prints environ variables
+ * _suurr - prints environ variables
  *
  * @infosh: data relevant
- * Retrn: 1 on success.
+ * Return: 1 on success.
  */
-int _env(shell_info *infosh)
+
+int _suurr(shell_info *infosh)
 {
-	int i, j;
+	int t, v;
 
-	for (i = 0; infosh->_envar[1]; i++)
+	for (t = 0; infosh->_surr[t]; t++)
 	{
-
-		for (j = 0; infosh->_envar[i][j]; j++)
-
+		for (v = 0; infosh->_surr[t][v]; v++)
 			;
-		write(STDOUT_FILENO, infosh->_envar[i], j);
+		write(STDOUT_FILENO, infosh->_surr[t], v);
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	infosh->status = 0;
 
 	return (1);
+}
