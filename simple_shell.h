@@ -93,4 +93,15 @@ typedef struct yet_var_lst
 void get_sigint(int prompt);
 
 
+/* makeshell_2.c */
+
+
+
+/* execute_cmd_3.c */
+int dir_in(char *way, int *m);
+char *_thatwhich(char *command, char **_surr);
+int is_execute(shell_info *infosh);
+int err_checker(char *rid, shell_info *infosh);
+int comma_exec(shell_info *infosh);
+
 #endif
