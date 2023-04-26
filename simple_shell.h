@@ -18,77 +18,79 @@
 
 /* This points to arrays of pointers to strings called the "environment" */
 
-extern char **environ;
+extern char **surround;
+
+/**
+ * struct l_lists - single linked list
+ * @lne: ; | &
+ * @next: next node
+ * Description: linked list to save seperators
+ */
+
+typedef struct l_lists
+{
+	char *lne;
+	struct line_list_s *next;
+} shell_list;
 
 
 /**
- * struct data - the struct is a function that contains all relevant data on runtime
+ * struct builtwith - This is the Builtin struct for command argument.
+ * @value: The name of the command builtin i.e cd, exit, env
+ * @v: data type pointer function
+ */
+
+typedef struct builtwith
+{
+	char *value;
+	int (*v)(shell_info *infosh);
+} builtwith_r;
+
+/**
+ * struct info_data - the struct is a function that contains
+ * all relevant data on runtime
  * @av: argument vector
  * @input: the line of command written by the user
  * @args: command line tokens
  * @status: last status of the shell
- * @counter: function that counts the lines
- * @_environ: the environment of a variable
+ * @num: function that counts the lines
+ * @_surr: the environment of a variable
  * @pid: The ID of a particular process of shell
  */
 
-typedef struct data
+typedef struct info_data
 {
 	char **av;
 	char *input;
 	char **args;
 	int status;
-	int counter;
-	char **_environ;
+	int num;
+	char **_surr;
 	char *pid;
-} data_shell;
+} info_data_shell;
 
 
 /**
- * struct sep_list_s - single linked list
- * @seperator: ; | &
- * @next: next node
- * Description: single linked list to store seperators
- */
-
-typedef struct sep_list_s
-{
-	char *line;
-	struct line_list_s *next;
-} line_list;
-
-/**
- * struct r_var_list - single linked list
- * @len_var: length of the variable
- * @val: value of the variable
- * @len_val: length of the value
+ * struct yet_var_lst - single linked list
+ * @yet_var: length of the variable
+ * @lar: value of the variable
+ * @yet_lar: length of the value
  * @next: next node
  * Description: single linked list to store variables
  */
 
-typedef struct r_var_list
+typedef struct yet_var_lst
 {
-	int len_var;
-	char *val;
-	int len_val;
-	struct r_var_list *next;
-} r_var;
-
-/**
- * struct builtin_s - Builtin struct for command args.
- * @name: The name of the command builtin i.e cd, exit, env
- * @f: data type pointer function
- */
-
-typedef struct builtin_s
-{
-	char *name;
-	int (*f)(data_shell *datash);
-} builtin_t;
+	int yet_var;
+	char *lar;
+	int yet_lar;
+	struct yet_var_lst *next;
+} yet_var;
 
 
 /* get_prompt_1.c */
 
 void get_sigint(int prompt);
+
 
 #endif
