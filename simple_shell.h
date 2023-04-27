@@ -43,7 +43,7 @@ typedef struct l_lists
 typedef struct builtwith
 {
 	char *name;
-	int (*v)(data_shell *infosh);
+	int (*v)(char data_shell, char *infosh);
 } builtwith_r;
 
 /**
@@ -63,7 +63,7 @@ typedef struct info_data
 	char **av;
 	char *input;
 	char **args;
-	int status;
+	int statos;
 	int num;
 	char **_surr;
 	char *pid;
@@ -90,27 +90,9 @@ typedef struct yet_var_lst
 
 /* get_prompt_1.c */
 
-void get_sigint(int prompt);
+void get_prompt(int prompt);
 
 
 /* makeshell_2.c */
-void free_data(data_shell *infosh);
-void set_data(data_shell *infosh, char **av);
-int main(int ac, char **av);
-
-/* execute_cmd_3.c */
-int dir_in(char *way, int *m);
-char *_thatwhich(char *command, char **_surr);
-int is_execute(data_shell *infosh);
-int err_checker(char *rid, data_shell *infosh);
-int comma_exec(data_shell *infosh);
-
-/* close_exit.c */
-int close_exit_shell(data_shell *infosh);
-
-/* surr.c */
-int comp_surr_name(const char *nsurr, const char *name);
-int _suurr(data_shell *infosh);
-char *_getenvar(const char *name, char **_surr);
 
 #endif
